@@ -3,338 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Informe 8 de junio de 2026 â DCSM</title>
+  <title>Informe Ejecutivo — 8 de junio de 2026</title>
   <style>
-    :root {
-      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
-      --accent: #4f8ef7; --accent2: #7c3aed;
-      --text: #e2e8f0; --text-muted: #94a3b8;
-      --border: #2d3148; --success: #10b981;
-      --radius: 12px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
-    header {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 16px 40px; display: flex; align-items: center; gap: 16px;
-    }
-    header a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
-    header a:hover { color: var(--accent); }
-    header .sep { color: var(--border); }
-    header .page-title { font-weight: 600; font-size: 0.95rem; }
-    .dl-btn {
-      margin-left: auto;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 8px;
-      padding: 8px 18px; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; display: flex; align-items: center; gap: 6px;
-      transition: opacity 0.2s;
-    }
-    .dl-btn:hover { opacity: 0.85; }
-    .hero {
-      background: linear-gradient(135deg, #1a1d27 0%, #16192a 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 48px 40px 36px;
-    }
-    .hero .eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
-    .hero h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 10px; }
-    .hero .meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
-    .pill { font-size: 0.76rem; padding: 4px 12px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
-    .pill.green { color: var(--success); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
-    .pill.blue  { color: var(--accent);  border-color: rgba(79,142,247,0.3);  background: rgba(79,142,247,0.08); }
-    main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
-    .exec-summary {
-      background: var(--surface); border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius); padding: 22px 26px;
-      margin-bottom: 40px; line-height: 1.75; font-size: 0.95rem;
-    }
-    .exec-summary strong { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 10px; }
-    .timeline-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
-    .timeline-section h2::after { content:''; flex:1; height:1px; background: var(--border); }
-    .timeline { position: relative; padding-left: 28px; }
-    .timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background: var(--border); }
-    .event {
-      position: relative; margin-bottom: 28px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 18px 20px;
-      transition: border-color 0.2s;
-    }
-    .event:hover { border-color: var(--accent); }
-    .event::before {
-      content:''; position:absolute; left:-24px; top:20px;
-      width:12px; height:12px; border-radius:50%;
-      background: var(--accent); border: 2px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-    .event.milestone::before { background: var(--success); box-shadow: 0 0 0 2px var(--success); }
-    .event .time { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.04em; }
-    .event .body { font-size: 0.9rem; line-height: 1.6; }
-    .event .tag {
-      display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 4px;
-      margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .tag.hito    { background: rgba(16,185,129,0.15); color: var(--success); }
-    .tag.tarea   { background: rgba(79,142,247,0.15);  color: var(--accent); }
-    .tag.mensaje { background: rgba(148,163,184,0.12); color: var(--text-muted); }
-    .images-section { margin-top: 40px; }
-    .images-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-    .images-section h2::after { content:''; flex:1; height:1px; background: var(--border); }
-    .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-    .img-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-    }
-    .img-caption { padding: 8px 12px; font-size: 0.76rem; color: var(--text-muted); }
-    .img-placeholder { background:var(--surface2); height:120px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:2rem; }
-    .nav-footer {
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-      margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
-    }
-    .nav-footer a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
-    .nav-footer a:hover { text-decoration: underline; }
-    footer { text-align: center; padding: 32px; font-size: 0.78rem; color: var(--text-muted); }
-    @media print {
-      header .dl-btn { display: none; }
-      body { background: #fff; color: #111; }
-      .hero { background: #f8f9fa; }
-      .event, .exec-summary { background: #fff; border-color: #ddd; }
-    }
-  </style>
+:root {
+  --bg: #f8f9fb; --surface: #ffffff; --surface2: #f1f3f8;
+  --accent: #1e40af; --accent-light: #dbeafe;
+  --text: #111827; --text-muted: #6b7280;
+  --border: #e5e7eb; --success: #059669; --success-light: #d1fae5;
+  --radius: 8px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; font-size:14px; }
+
+/* ── header ── */
+.page-header {
+  background: var(--accent); color:#fff;
+  padding: 28px 48px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.page-header .org { font-size:0.78rem; letter-spacing:0.08em; opacity:0.75; text-transform:uppercase; margin-bottom:6px; }
+.page-header h1 { font-size:1.5rem; font-weight:700; }
+.page-header .meta { text-align:right; font-size:0.82rem; opacity:0.85; line-height:1.8; }
+.dl-btn {
+  margin-top:10px; background:#fff; color:var(--accent);
+  border:none; border-radius:6px; padding:7px 16px;
+  font-size:0.82rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:5px;
+}
+.dl-btn:hover { opacity:0.9; }
+
+/* ── stats bar ── */
+.stats-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  padding: 16px 48px; display:flex; gap:32px;
+}
+.stat { display:flex; flex-direction:column; }
+.stat .val { font-size:1.4rem; font-weight:700; color:var(--accent); }
+.stat .lbl { font-size:0.73rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; }
+
+/* ── main layout ── */
+main { max-width:960px; margin:0 auto; padding:36px 24px 60px; }
+
+/* ── executive summary box ── */
+.exec-box {
+  background:#fff; border:1px solid var(--border);
+  border-left:4px solid var(--accent);
+  border-radius:var(--radius); padding:20px 24px;
+  margin-bottom:32px; line-height:1.75;
+}
+.exec-box .label {
+  font-size:0.72rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.08em; color:var(--accent); margin-bottom:8px;
+}
+
+/* ── section header ── */
+.section-title {
+  font-size:0.82rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.06em; color:var(--text-muted);
+  margin: 28px 0 14px; display:flex; align-items:center; gap:8px;
+}
+.section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── activity card ── */
+.activity {
+  background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px 22px;
+  margin-bottom:14px; display:flex; gap:20px;
+}
+.activity-left { flex:1; min-width:0; }
+.activity-badge {
+  display:inline-block; font-size:0.68rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.04em;
+  padding:2px 9px; border-radius:20px; margin-bottom:8px;
+}
+.badge-hito    { background:var(--success-light); color:var(--success); }
+.badge-tarea   { background:var(--accent-light);  color:var(--accent);  }
+.badge-info    { background:var(--surface2);       color:var(--text-muted); }
+.activity h3 { font-size:0.95rem; font-weight:600; margin-bottom:4px; }
+.activity p  { font-size:0.86rem; color:var(--text-muted); line-height:1.55; }
+.activity .time-tag {
+  font-size:0.75rem; color:var(--text-muted); margin-top:8px;
+  display:flex; align-items:center; gap:5px;
+}
+.activity-img {
+  width:160px; flex-shrink:0; border-radius:6px; overflow:hidden;
+  background:var(--surface2); display:flex; align-items:center;
+  justify-content:center; font-size:2rem; min-height:100px;
+}
+.activity-img img { width:100%; height:100%; object-fit:cover; }
+
+/* ── image gallery ── */
+.gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+.img-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+.img-card .img-ph { background:var(--surface2); height:130px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
+.img-card .img-cap { padding:8px 10px; font-size:0.75rem; color:var(--text-muted); line-height:1.4; }
+
+/* ── nav ── */
+.nav-footer {
+  display:flex; justify-content:space-between; margin-top:40px;
+  padding-top:20px; border-top:1px solid var(--border);
+}
+.nav-footer a { color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:500; }
+footer { text-align:center; padding:24px; font-size:0.75rem; color:var(--text-muted); }
+
+@media print {
+  .dl-btn { display:none; }
+  body { background:#fff; }
+  .page-header { background:#1e3a8a !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+</style>
 </head>
 <body>
 
-<header>
-  <a href="../index.html">â Inicio</a>
-  <span class="sep">/</span>
-  <span class="page-title">8 de junio de 2026</span>
-  <button class="dl-btn" onclick="downloadPDF()">â¬ Descargar PDF</button>
-</header>
-
-<div class="hero">
-  <div class="eyebrow">Informe Diario Â· Grupo MultipropÃ³sito DCSM</div>
-  <h1>Informe 8 de junio de 2026</h1>
-  <div class="meta">
-    <span class="pill">ð lunes, 8 de junio de 2026</span>
-    <span class="pill green">â 5 hitos</span>
-    <span class="pill blue">ð¬ 24 mensajes</span>
-    <span class="pill">â± Generado 08/06/2026 Â· 12:06 hrs (parcial)</span>
+<div class="page-header">
+  <div>
+    <div class="org">DCSM · Grupo Multipropósito</div>
+    <h1>Informe Ejecutivo<br>8 de junio de 2026</h1>
+    <div style="margin-top:10px;font-size:0.82rem;opacity:0.8">Lunes · Generado 08/06/2026 · Informe parcial</div>
   </div>
+  <div class="meta">
+    <div>2 integrantes</div>
+    <div>Actividad: 08:00 – 12:06</div>
+    <button class="dl-btn" onclick="window.print()">⬇ Descargar PDF</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="val">5</span><span class="lbl">Hitos</span></div>
+  <div class="stat"><span class="val">24</span><span class="lbl">Mensajes</span></div>
+  <div class="stat"><span class="val">11</span><span class="lbl">Imágenes</span></div>
+  <div class="stat"><span class="val">4 h</span><span class="lbl">Duración</span></div>
 </div>
 
 <main>
 
-  <div class="exec-summary">
-    <strong>Resumen del dÃ­a</strong>
-    Durante el dÃ­a participaron 2 integrantes (Maria Cata Godoy ICETEL, Don Danilo multi), con actividad concentrada entre las 08:00 â 12:06. Se registraron 5 hitos y 24 mensajes en total. Los principales hitos registrados fueron: retiro de escombros en bodega 13 subterrÃ¡neo SM48; reparaciÃ³n e instalaciÃ³n de tapas de enchufes en pisos 3 y 4 de SM50 intermedio; instalaciÃ³n de 3 tapas ciegas en sala de generadores (Patio Tucapel subterrÃ¡neo); instalaciÃ³n de tapa en sala de energÃ­a SM50 principal.
+  <div class="exec-box">
+    <div class="label">Resumen ejecutivo</div>
+    Jornada de mantención eléctrica y limpieza. Don Danilo realizó el <strong>retiro de escombros en bodega 13 subterráneo SM48</strong> y ejecutó trabajos de <strong>reparación e instalación de tapas de enchufes</strong> en pisos 3 y 4 de SM50 intermedio. Se instalaron <strong>3 tapas ciegas en sala de generadores</strong> (Patio Tucapel subterráneo) y una <strong>tapa de interruptores en sala de energía SM50 principal</strong>. Coordinación de tareas a cargo de Maria Cata Godoy ICETEL.
   </div>
 
-  <div class="timeline-section">
-    <h2>Actividades e Hitos</h2>
-    <div class="timeline">
+  <div class="section-title">Actividades del día</div>
 
-      <div class="event">
-        <div class="time">08:35 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Muy buen dÃ­a y excelente semana</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">08:41 Â· Don Danilo multi</div>
-        <div class="body">Buenos dÃ­as</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">08:53 Â· Don Danilo multi</div>
-        <div class="body">1 subterrÃ¡neo SM 48 bodega 13 / Me dirijo a sacar restos de escombros
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:02 Â· Don Danilo multi</div>
-        <div class="body">1 subterrÃ¡neo SM 48 bodega 13 / Restos de material para desechar
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:07 Â· Don Danilo multi</div>
-        <div class="body">Bodega 13 subterrÃ¡neo SM 48
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:31 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">BaÃ±o -1 mujeres SM50 â esta es una
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:34 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Colocar tapa sala energÃ­a P-1 SM50
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag tarea">Tarea</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:43 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Este es del piso 3
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:44 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Favor, continuar con lo conversado, revisar si hay una tapa de enchufe con 1 perforaciÃ³n</div>
-        <span class="tag tarea">Tarea</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:48 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Tapa de enchufe por ascensor 3 â lo recuerdo bien si es piso 5 o 6 (Editado)</div>
-        <span class="tag tarea">Tarea</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:49 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Tapa en Tucapel piso -1
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:50 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">TambiÃ©n Tucapel -1</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">09:51 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Y esto es en el piso 4 del intermedio</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">10:19 Â· Don Danilo multi</div>
-        <div class="body">Trabajos de reparaciÃ³n y instalaciÃ³n de tapas de enchufes en SM 50 intermedio / SM 50 principal patio Tucapel</div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">10:39 Â· Don Danilo multi</div>
-        <div class="body">4 piso SM 50 intermedio / Por enchufe doble suelto: Se fija al muro y se instala tapa a enchufe doble
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event">
-        <div class="time">10:48 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Gracias</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">10:50 Â· Don Danilo multi</div>
-        <div class="body">3 piso SM 50 intermedio frente a sala de maquetas / Cambio de enchufe
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event">
-        <div class="time">11:01 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Cuando termine con las tapas de enchufes e interruptores, favor de ver si uno de los chapones que guardamos abajo sirven para esta cajonera de piso 3</div>
-        <span class="tag tarea">Tarea</span>
-      </div>
-
-      <div class="event">
-        <div class="time">11:31 Â· Don Danilo multi</div>
-        <div class="body">Ok</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">11:32 Â· Don Danilo multi</div>
-        <div class="body">Pero se llaman chapines</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">11:33 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Se le corriÃ³ el dedo</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">11:34 Â· Don Danilo multi</div>
-        <div class="body">Ok</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">11:46 Â· Don Danilo multi</div>
-        <div class="body">Patio Tucapel 1 subterrÃ¡neo sala de generadores / Se instalan 3 tapas ciegas
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">12:06 Â· Don Danilo multi</div>
-        <div class="body">1 subterrÃ¡neo SM 50 principal sala de energÃ­a â se instala tapa a interruptores de luz
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Retiro de escombros — Bodega 13, Subterráneo SM48</h3>
+      <p>Se realizó el retiro de restos de material y escombros de la bodega 13 en el subterráneo de SM48. Se documentó estado inicial y final del espacio.</p>
+      <div class="time-tag">🕐 08:53 – 09:07 · Don Danilo</div>
     </div>
+    <div class="activity-img">📷</div>
   </div>
 
-  <div class="images-section">
-    <h2>ImÃ¡genes (12)</h2>
-    <div class="images-grid">
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">08:53 Â· Don Danilo â Bodega 13 subterrÃ¡neo SM48 (inicio)</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:02 Â· Don Danilo â Escombros bodega 13</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:07 Â· Don Danilo â Bodega 13 subterrÃ¡neo SM48</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:31 Â· Maria Cata â BaÃ±o -1 mujeres SM50</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:34 Â· Maria Cata â Sala energÃ­a P-1 SM50</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:43 Â· Maria Cata â Piso 3</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:49 Â· Maria Cata â Tapa Tucapel piso -1</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">10:39 Â· Don Danilo â Tapa enchufe doble piso 4 SM50</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">10:50 Â· Don Danilo â Cambio enchufe piso 3 SM50</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">11:46 Â· Don Danilo â Tapas ciegas sala generadores</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">12:06 Â· Don Danilo â Tapa interruptores sala energÃ­a SM50</div></div>
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Reparación e instalación tapas de enchufes — SM50 Intermedio, Pisos 3 y 4</h3>
+      <p>Se reparó enchufe doble suelto en piso 4 (fijado al muro e instalada tapa), y se realizó cambio de enchufe en piso 3 frente a sala de maquetas. Se revisó necesidad de chapines para cajonera piso 3.</p>
+      <div class="time-tag">🕐 10:19 – 10:50 · Don Danilo</div>
     </div>
+    <div clas="activity-img">📷</div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Instalación 3 tapas ciegas — Sala de generadores, Patio Tucapel subterráneo</h3>
+      <p>Se instalaron 3 tapas ciegas en la sala de generadores ubicada en el piso -1 del Patio Tucapel, completando el cierre de tableros pendientes.</p>
+      <div class="time-tag">🕐 11:46 · Don Danilo</div>
+    </div>
+    <div class="activity-img">📷</div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Instalación tapa interruptores — Sala de energía SM50 Principal</h3>
+      <p>Se instaló tapa a interruptores de luz en sala de energía del subterráneo de SM50 principal.</p>
+      <div class="time-tag">🕐 12:06 · Don Danilo</div>
+    </div>
+    <div class="activity-img">📷</div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-tarea">→ Tarea pendiente</span>
+      <h3>Revisión tapa enchufe con 1 perforación — Zona ascensor 3</h3>
+      <p>Maria Cata identificó necesidad de tapa de enchufe con 1 perforación en zona ascensor 3 (posiblemente piso 5 o 6). Queda pendiente verificar y ejecutar.</p>
+      <div class="time-tag">🕐 09:44 · Maria Cata</div>
+    </div>
+    <div class="activity-img" style="background:#fef9c3;font-size:1.5rem;">⚠️</div>
+  </div>
+
+  <div class="section-title">Registro fotográfico (11 imágenes)</div>
+
+  <div class="gallery">
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">08:53 — Bodega 13 subterráneo SM48 (inicio)</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">09:02 — Escombros bodega 13 para desechar</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">09:07 — Bodega 13 subterráneo SM48 (avance)</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">09:31 — Baño -1 mujeres SM50</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">09:34 — Sala energía P-1 SM50 (antes)</div></div>
+    <div class="img-card"><div clas="img-ph">📷</div><div class="img-cap">09:43 — Enchufe piso 3</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">09:49 — Tapa Tucapel piso -1</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">10:39 - Tapa enchufe doble piso 4 SM51</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">10:50 - Cambio enchufe piso 3 SM50</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">11:46 - Tapas ciegas sala generadores</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">12:06 - Tapa interruptores sala energia SM50</div></div>
   </div>
 
   <div class="nav-footer">
-    <a href="report_2026-06-05.html">â Informe anterior</a>
+    <a href="report_2026-06-05.html"><- Informe anterior</a>
     <a href="../index.html">Ver todos los informes</a>
-    <a href="#">Siguiente informe â</a>
+    <a href="#">Siguiente informe -></a>
   </div>
 
 </main>
-<footer>DCSM MultipropÃ³sito Â· Informe 2026-06-08 Â· Generado automÃ¡ticamente</footer>
-
-<script>
-function downloadPDF() {
-  const btn = document.querySelector('.dl-btn');
-  btn.style.display = 'none';
-  window.print();
-  setTimeout(() => { btn.style.display = ''; }, 1000);
-}
-</script>
+<footer>DCSM Multiproposito - Informe 2026-06-08 - Generado automaticamente</footer>
 </body>
 </html>

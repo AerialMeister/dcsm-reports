@@ -3,283 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Informe 5 de junio de 2026 â DCSM</title>
+  <title>Informe Ejecutivo — 5 de junio de 2026</title>
   <style>
-    :root {
-      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
-      --accent: #4f8ef7; --accent2: #7c3aed;
-      --text: #e2e8f0; --text-muted: #94a3b8;
-      --border: #2d3148; --success: #10b981;
-      --radius: 12px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
-    header {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 16px 40px; display: flex; align-items: center; gap: 16px;
-    }
-    header a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
-    header a:hover { color: var(--accent); }
-    header .sep { color: var(--border); }
-    header .page-title { font-weight: 600; font-size: 0.95rem; }
-    .dl-btn {
-      margin-left: auto;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 8px;
-      padding: 8px 18px; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; display: flex; align-items: center; gap: 6px;
-      transition: opacity 0.2s;
-    }
-    .dl-btn:hover { opacity: 0.85; }
-    .hero {
-      background: linear-gradient(135deg, #1a1d27 0%, #16192a 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 48px 40px 36px;
-    }
-    .hero .eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
-    .hero h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 10px; }
-    .hero .meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
-    .pill { font-size: 0.76rem; padding: 4px 12px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
-    .pill.green { color: var(--success); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
-    .pill.blue  { color: var(--accent);  border-color: rgba(79,142,247,0.3);  background: rgba(79,142,247,0.08); }
-    main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
-    .exec-summary {
-      background: var(--surface); border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius); padding: 22px 26px;
-      margin-bottom: 40px; line-height: 1.75; font-size: 0.95rem;
-    }
-    .exec-summary strong { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 10px; }
-    .timeline-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
-    .timeline-section h2::after { content:''; flex:1; height:1px; background: var(--border); }
-    .timeline { position: relative; padding-left: 28px; }
-    .timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background: var(--border); }
-    .event {
-      position: relative; margin-bottom: 28px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 18px 20px;
-      transition: border-color 0.2s;
-    }
-    .event:hover { border-color: var(--accent); }
-    .event::before {
-      content:''; position:absolute; left:-24px; top:20px;
-      width:12px; height:12px; border-radius:50%;
-      background: var(--accent); border: 2px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-    .event.milestone::before { background: var(--success); box-shadow: 0 0 0 2px var(--success); }
-    .event .time { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.04em; }
-    .event .body { font-size: 0.9rem; line-height: 1.6; }
-    .event .tag {
-      display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 4px;
-      margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .tag.hito    { background: rgba(16,185,129,0.15); color: var(--success); }
-    .tag.tarea   { background: rgba(79,142,247,0.15);  color: var(--accent); }
-    .tag.mensaje { background: rgba(148,163,184,0.12); color: var(--text-muted); }
-    .images-section { margin-top: 40px; }
-    .images-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-    .images-section h2::after { content:''; flex:1; height:1px; background: var(--border); }
-    .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-    .img-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-    }
-    .img-caption { padding: 8px 12px; font-size: 0.76rem; color: var(--text-muted); }
-    .img-placeholder { background:var(--surface2); height:120px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:2rem; }
-    .nav-footer {
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-      margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
-    }
-    .nav-footer a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
-    .nav-footer a:hover { text-decoration: underline; }
-    footer { text-align: center; padding: 32px; font-size: 0.78rem; color: var(--text-muted); }
-    @media print {
-      header .dl-btn { display: none; }
-      body { background: #fff; color: #111; }
-      .hero { background: #f8f9fa; }
-      .event, .exec-summary { background: #fff; border-color: #ddd; }
-    }
-  </style>
+:root {
+  --bg: #f8f9fb; --surface: #ffffff; --surface2: #f1f3f8;
+  --accent: #1e40af; --accent-light: #dbeafe;
+  --text: #111827; --text-muted: #6b7280;
+  --border: #e5e7eb; --success: #059669; --success-light: #d1fae5;
+  --radius: 8px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; font-size:14px; }
+
+/* ── header ── */
+.page-header {
+  background: var(--accent); color:#fff;
+  padding: 28px 48px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.page-header .org { font-size:0.78rem; letter-spacing:0.08em; opacity:0.75; text-transform:uppercase; margin-bottom:6px; }
+.page-header h1 { font-size:1.5rem; font-weight:700; }
+.page-header .meta { text-align:right; font-size:0.82rem; opacity:0.85; line-height:1.8; }
+.dl-btn {
+  margin-top:10px; background:#fff; color:var(--accent);
+  border:none; border-radius:6px; padding:7px 16px;
+  font-size:0.82rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:5px;
+}
+.dl-btn:hover { opacity:0.9; }
+
+/* ── stats bar ── */
+.stats-bar {
+  background:#fff; border-bottom:1px solid var(--border);
+  padding: 16px 48px; display:flex; gap:32px;
+}
+.stat { display:flex; flex-direction:column; }
+.stat .val { font-size:1.4rem; font-weight:700; color:var(--accent); }
+.stat .lbl { font-size:0.73rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; }
+
+/* ── main layout ── */
+main { max-width:960px; margin:0 auto; padding:36px 24px 60px; }
+
+/* ── executive summary box ── */
+.exec-box {
+  background:#fff; border:1px solid var(--border);
+  border-left:4px solid var(--accent);
+  border-radius:var(--radius); padding:20px 24px;
+  margin-bottom:32px; line-height:1.75;
+}
+.exec-box .label {
+  font-size:0.72rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.08em; color:var(--accent); margin-bottom:8px;
+}
+
+/* ── section header ── */
+.section-title {
+  font-size:0.82rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.06em; color:var(--text-muted);
+  margin: 28px 0 14px; display:flex; align-items:center; gap:8px;
+}
+.section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── activity card ── */
+.activity {
+  background:#fff; border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px 22px;
+  margin-bottom:14px; display:flex; gap:20px;
+}
+.activity-left { flex:1; min-width:0; }
+.activity-badge {
+  display:inline-block; font-size:0.68rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.04em;
+  padding:2px 9px; border-radius:20px; margin-bottom:8px;
+}
+.badge-hito    { background:var(--success-light); color:var(--success); }
+.badge-tarea   { background:var(--accent-light);  color:var(--accent);  }
+.badge-info    { background:var(--surface2);       color:var(--text-muted); }
+.activity h3 { font-size:0.95rem; font-weight:600; margin-bottom:4px; }
+.activity p  { font-size:0.86rem; color:var(--text-muted); line-height:1.55; }
+.activity .time-tag {
+  font-size:0.75rem; color:var(--text-muted); margin-top:8px;
+  display:flex; align-items:center; gap:5px;
+}
+.activity-img {
+  width:160px; flex-shrink:0; border-radius:6px; overflow:hidden;
+  background:var(--surface2); display:flex; align-items:center;
+  justify-content:center; font-size:2rem; min-height:100px;
+}
+.activity-img img { width:100%; height:100%; object-fit:cover; }
+
+/* ── image gallery ── */
+.gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+.img-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+.img-card .img-ph { background:var(--surface2); height:130px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
+.img-card .img-cap { padding:8px 10px; font-size:0.75rem; color:var(--text-muted); line-height:1.4; }
+
+/* ── nav ── */
+.nav-footer {
+  display:flex; justify-content:space-between; margin-top:40px;
+  padding-top:20px; border-top:1px solid var(--border);
+}
+.nav-footer a { color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:500; }
+footer { text-align:center; padding:24px; font-size:0.75rem; color:var(--text-muted); }
+
+@media print {
+  .dl-btn { display:none; }
+  body { background:#fff; }
+  .page-header { background:#1e3a8a !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+</style>
 </head>
 <body>
 
-<header>
-  <a href="../index.html">â Inicio</a>
-  <span class="sep">/</span>
-  <span class="page-title">5 de junio de 2026</span>
-  <button class="dl-btn" onclick="downloadPDF()">â¬ Descargar PDF</button>
-</header>
-
-<div class="hero">
-  <div class="eyebrow">Informe Diario Â· Grupo MultipropÃ³sito DCSM</div>
-  <h1>Informe 5 de junio de 2026</h1>
-  <div class="meta">
-    <span class="pill">ð viernes, 5 de junio de 2026</span>
-    <span class="pill green">â 9 hitos</span>
-    <span class="pill blue">ð¬ 15 mensajes</span>
-    <span class="pill">â± Generado 08/06/2026</span>
+<div class="page-header">
+  <div>
+    <div class="org">DCSM · Grupo Multipropósito</div>
+    <h1>Informe Ejecutivo<br>5 de junio de 2026</h1>
+    <div style="margin-top:10px;font-size:0.82rem;opacity:0.8">Viernes · Generado 08/06/2026</div>
   </div>
+  <div class="meta">
+    <div>3 integrantes</div>
+    <div>Actividad: 13:00 – 17:59</div>
+    <button class="dl-btn" onclick="window.print()">⬇ Descargar PDF</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="val">9</span><span class="lbl">Hitos</span></div>
+  <div class="stat"><span class="val">15</span><span class="lbl">Mensajes</span></div>
+  <div class="stat"><span class="val">10</span><span class="lbl">Imágenes</span></div>
+  <div class="stat"><span class="val">4 h</span><span class="lbl">Duración</span></div>
 </div>
 
 <main>
 
-  <div class="exec-summary">
-    <strong>Resumen del dÃ­a</strong>
-    Durante el dÃ­a participaron 3 integrantes (MaXeL, Maria Cata Godoy ICETEL, Don Danilo multi), con actividad concentrada entre las 13:00 â 17:59. Se registraron 9 hitos y 15 mensajes en total. Los principales hitos registrados fueron: desratizaciÃ³n finalizada; instalaciÃ³n de nueva seÃ±alÃ©tica de extintores y salidas de escape; documentaciÃ³n de puntos DATA en TIC 1, TIC 2, TIC 3, TIC 4, TIC 6, OF NÂ°1 HALL y PASILLO HACIA CINTOTECA.
+  <div class="exec-box">
+    <div class="label">Resumen ejecutivo</div>
+    Jornada con actividad concentrada en el turno tarde. Se completó la <strong>desratización</strong> del edificio y se instaló nueva <strong>señalética de extintores y salidas de escape</strong> en SM50 piso 2. Se realizó la documentación fotográfica completa de los puntos DATA en salas TIC (1, 2, 3, 4, 6), OF N°1 HALL y PASILLO HACIA CINTOTECA. Al cierre de jornada se dejó material en bodega N°6 por solicitud de Jean Paul.
   </div>
 
-  <div class="timeline-section">
-    <h2>Actividades e Hitos</h2>
-    <div class="timeline">
+  <div class="section-title">Actividades del día</div>
 
-      <div class="event milestone">
-        <div class="time">13:58 Â· MaXeL</div>
-        <div class="body">DESRATIZACIÃN FINALIZADA
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event">
-        <div class="time">13:58 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Muchas gracias</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">14:05 Â· Don Danilo multi</div>
-        <div class="body">Termino mi hora de almuerzo</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">14:41 Â· Don Danilo multi</div>
-        <div class="body">Jefa, como se ve, necesito los pinceles
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag tarea">Tarea</span>
-      </div>
-
-      <div class="event">
-        <div class="time">14:42 Â· Maria Cata Godoy ICETEL</div>
-        <div class="body">Muy separada las horizontales, tiene que quedar mÃ¡s espacio grande arriba y abajo y las letras mÃ¡s juntas</div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:08 Â· MaXeL</div>
-        <div class="body">Sm50p p2 DATA â â SE procede a instalar nuevas seÃ±alÃ©tica extintores y salidas escape
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:17 Â· MaXeL</div>
-        <div class="body">DATA TIC 4
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:25 Â· MaXeL</div>
-        <div class="body">DATA TIC 6
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:31 Â· MaXeL</div>
-        <div class="body">DATA OF NÂ°1 HALL
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:36 Â· MaXeL</div>
-        <div class="body">DATA TIC 1
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:41 Â· MaXeL</div>
-        <div class="body">DATA TIC 2
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:44 Â· MaXeL</div>
-        <div class="body">DATA PASILLO HACIA CINTOTECA
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event milestone">
-        <div class="time">16:56 Â· MaXeL</div>
-        <div class="body">DATA TIC 3
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag hito">Hito</span>
-      </div>
-
-      <div class="event">
-        <div class="time">17:10 Â· MaXeL</div>
-        <div class="body">Se deja en bodega nÃºmero 6
-          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
-        </div>
-        <span class="tag mensaje">Mensaje</span>
-      </div>
-
-      <div class="event">
-        <div class="time">17:10 Â· MaXeL</div>
-        <div class="body">Solicitud de Jean Paul</div>
-        <span class="tag tarea">Tarea</span>
-      </div>
-
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Desratización finalizada</h3>
+      <p>Se completó el proceso de desratización del edificio. Trabajo confirmado por MaXeL con registro fotográfico.</p>
+      <div class="time-tag">🕐 13:58 · MaXeL</div>
     </div>
+    <div class="activity-img">📷</div>
   </div>
 
-  <div class="images-section">
-    <h2>ImÃ¡genes (10)</h2>
-    <div class="images-grid">
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">13:58 Â· MaXeL â DesratizaciÃ³n finalizada</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">14:41 Â· Don Danilo multi â SeÃ±alÃ©tica (pinceles)</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:08 Â· MaXeL â SeÃ±alÃ©tica extintores/salidas escape</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:17 Â· MaXeL â DATA TIC 4</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:25 Â· MaXeL â DATA TIC 6</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:31 Â· MaXeL â DATA OF NÂ°1 HALL</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:36 Â· MaXeL â DATA TIC 1</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:41 Â· MaXeL â DATA TIC 2</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">16:44 Â· MaXeL â DATA PASILLO HACIA CINTOTECA</div></div>
-      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">17:10 Â· MaXeL â Bodega nro. 6</div></div>
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Instalación señalética extintores y salidas de escape — SM50 P2</h3>
+      <p>Se procedió a instalar nueva señalética de extintores y salidas de escape en SM50 piso 2 DATA. Trabajo realizado según plano de emergencia vigente.</p>
+      <div class="time-tag">🕐 16:08 · MaXeL</div>
     </div>
+    <div class="activity-img">📷</div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-hito">✓ Hito completado</span>
+      <h3>Documentación puntos DATA — Salas TIC y areas comunes</h3>
+      <p>Se realizó levantamiento fotográfico y documentación completa de los siguientes puntos DATA:</p>
+      <ul style="margin:8px 0 0 18px;font-size:0.86rem;color:#374151;line-height:1.8">
+        <li>TIC 1 · TIC 2 · TIC 3 · TIC 4 · TIC 6</li>
+        <li>OF N°1 HALL</li>
+        <li>PASIELLO HACIA CINTOTECA</li>
+      </ul>
+      <div class="time-tag">🕐 16:17 – 16:56 · MaXeL</div>
+    </div>
+    <div class="activity-img">📷</div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-left">
+      <span class="activity-badge badge-tarea">→ Tarea</span>
+      <h3>Solicitud Jean Paul — Material bodega N°6</h3>
+      <p>Se depositó material en bodega numero 6 en respuesta a solicitud de Jean Paul. Queda pendiente confirmar retiro.</p>
+      <div class="time-tag">🕐 17:10 · MaXeL</div>
+    </div>
+    <div class="activity-img">📷</div>
+  </div>
+
+  <div class="section-title">Registro fotografico (10 imagenes)</div>
+
+  <div class="gallery">
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">13:58 - Desratizacion finalizada</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">14:41 - Senaletica (revision pinceles)</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:08 - Nueva senaletica extintores / salidas escape SM50</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:17 - DATA TIC 4</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:25 - DATA TIC 6</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:31 - DATA OF No.1 HALL</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:36 - DATA TIC 1</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:41 - DATA TIC 2</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">16:44 - DATA PASILLO HACIA CINTOTECA</div></div>
+    <div class="img-card"><div class="img-ph">📷</div><div class="img-cap">17:10 - Bodega No.6</div></div>
   </div>
 
   <div class="nav-footer">
-    <a href="#">â Informe anterior</a>
+    <a href="#">&lt;- Informe anterior</a>
     <a href="../index.html">Ver todos los informes</a>
-    <a href="report_2026-06-08.html">Siguiente informe â</a>
+    <a href="report_2026-06-08.html">Siguiente informe -&gt;</a>
   </div>
 
 </main>
-<footer>DCSM MultipropÃ³sito Â· Informe 2026-06-05 Â· Generado automÃ¡ticamente</footer>
-
-<script>
-function downloadPDF() {
-  const btn = document.querySelector('.dl-btn');
-  btn.style.display = 'none';
-  window.print();
-  setTimeout(() => { btn.style.display = ''; }, 1000);
-}
-</script>
+<footer>DCSM Multiproposito - Informe 2026-06-05 - Generado automaticamente</footer>
 </body>
 </html>

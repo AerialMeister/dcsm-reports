@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informe 8 de junio de 2026 â DCSM</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c3aed;
+      --text: #e2e8f0; --text-muted: #94a3b8;
+      --border: #2d3148; --success: #10b981;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 16px 40px; display: flex; align-items: center; gap: 16px;
+    }
+    header a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+    header a:hover { color: var(--accent); }
+    header .sep { color: var(--border); }
+    header .page-title { font-weight: 600; font-size: 0.95rem; }
+    .dl-btn {
+      margin-left: auto;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 8px;
+      padding: 8px 18px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .dl-btn:hover { opacity: 0.85; }
+    .hero {
+      background: linear-gradient(135deg, #1a1d27 0%, #16192a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 40px 36px;
+    }
+    .hero .eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
+    .hero h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 10px; }
+    .hero .meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+    .pill { font-size: 0.76rem; padding: 4px 12px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+    .pill.green { color: var(--success); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
+    .pill.blue  { color: var(--accent);  border-color: rgba(79,142,247,0.3);  background: rgba(79,142,247,0.08); }
+    main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+    .exec-summary {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius); padding: 22px 26px;
+      margin-bottom: 40px; line-height: 1.75; font-size: 0.95rem;
+    }
+    .exec-summary strong { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 10px; }
+    .timeline-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+    .timeline-section h2::after { content:''; flex:1; height:1px; background: var(--border); }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background: var(--border); }
+    .event {
+      position: relative; margin-bottom: 28px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+    .event:hover { border-color: var(--accent); }
+    .event::before {
+      content:''; position:absolute; left:-24px; top:20px;
+      width:12px; height:12px; border-radius:50%;
+      background: var(--accent); border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .event.milestone::before { background: var(--success); box-shadow: 0 0 0 2px var(--success); }
+    .event .time { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.04em; }
+    .event .body { font-size: 0.9rem; line-height: 1.6; }
+    .event .tag {
+      display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 4px;
+      margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .tag.hito    { background: rgba(16,185,129,0.15); color: var(--success); }
+    .tag.tarea   { background: rgba(79,142,247,0.15);  color: var(--accent); }
+    .tag.mensaje { background: rgba(148,163,184,0.12); color: var(--text-muted); }
+    .images-section { margin-top: 40px; }
+    .images-section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .images-section h2::after { content:''; flex:1; height:1px; background: var(--border); }
+    .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .img-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .img-caption { padding: 8px 12px; font-size: 0.76rem; color: var(--text-muted); }
+    .img-placeholder { background:var(--surface2); height:120px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:2rem; }
+    .nav-footer {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
+    }
+    .nav-footer a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+    .nav-footer a:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 32px; font-size: 0.78rem; color: var(--text-muted); }
+    @media print {
+      header .dl-btn { display: none; }
+      body { background: #fff; color: #111; }
+      .hero { background: #f8f9fa; }
+      .event, .exec-summary { background: #fff; border-color: #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html">â Inicio</a>
+  <span class="sep">/</span>
+  <span class="page-title">8 de junio de 2026</span>
+  <button class="dl-btn" onclick="downloadPDF()">â¬ Descargar PDF</button>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">Informe Diario Â· Grupo MultipropÃ³sito DCSM</div>
+  <h1>Informe 8 de junio de 2026</h1>
+  <div class="meta">
+    <span class="pill">ð lunes, 8 de junio de 2026</span>
+    <span class="pill green">â 5 hitos</span>
+    <span class="pill blue">ð¬ 24 mensajes</span>
+    <span class="pill">â± Generado 08/06/2026 Â· 12:06 hrs (parcial)</span>
+  </div>
+</div>
+
+<main>
+
+  <div class="exec-summary">
+    <strong>Resumen del dÃ­a</strong>
+    Durante el dÃ­a participaron 2 integrantes (Maria Cata Godoy ICETEL, Don Danilo multi), con actividad concentrada entre las 08:00 â 12:06. Se registraron 5 hitos y 24 mensajes en total. Los principales hitos registrados fueron: retiro de escombros en bodega 13 subterrÃ¡neo SM48; reparaciÃ³n e instalaciÃ³n de tapas de enchufes en pisos 3 y 4 de SM50 intermedio; instalaciÃ³n de 3 tapas ciegas en sala de generadores (Patio Tucapel subterrÃ¡neo); instalaciÃ³n de tapa en sala de energÃ­a SM50 principal.
+  </div>
+
+  <div class="timeline-section">
+    <h2>Actividades e Hitos</h2>
+    <div class="timeline">
+
+      <div class="event">
+        <div class="time">08:35 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Muy buen dÃ­a y excelente semana</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">08:41 Â· Don Danilo multi</div>
+        <div class="body">Buenos dÃ­as</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event milestone">
+        <div class="time">08:53 Â· Don Danilo multi</div>
+        <div class="body">1 subterrÃ¡neo SM 48 bodega 13 / Me dirijo a sacar restos de escombros
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag hito">Hito</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:02 Â· Don Danilo multi</div>
+        <div class="body">1 subterrÃ¡neo SM 48 bodega 13 / Restos de material para desechar
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:07 Â· Don Danilo multi</div>
+        <div class="body">Bodega 13 subterrÃ¡neo SM 48
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:31 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">BaÃ±o -1 mujeres SM50 â esta es una
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:34 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Colocar tapa sala energÃ­a P-1 SM50
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag tarea">Tarea</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:43 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Este es del piso 3
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:44 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Favor, continuar con lo conversado, revisar si hay una tapa de enchufe con 1 perforaciÃ³n</div>
+        <span class="tag tarea">Tarea</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:48 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Tapa de enchufe por ascensor 3 â lo recuerdo bien si es piso 5 o 6 (Editado)</div>
+        <span class="tag tarea">Tarea</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:49 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Tapa en Tucapel piso -1
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:50 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">TambiÃ©n Tucapel -1</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">09:51 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Y esto es en el piso 4 del intermedio</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event milestone">
+        <div class="time">10:19 Â· Don Danilo multi</div>
+        <div class="body">Trabajos de reparaciÃ³n y instalaciÃ³n de tapas de enchufes en SM 50 intermedio / SM 50 principal patio Tucapel</div>
+        <span class="tag hito">Hito</span>
+      </div>
+
+      <div class="event milestone">
+        <div class="time">10:39 Â· Don Danilo multi</div>
+        <div class="body">4 piso SM 50 intermedio / Por enchufe doble suelto: Se fija al muro y se instala tapa a enchufe doble
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag hito">Hito</span>
+      </div>
+
+      <div class="event">
+        <div class="time">10:48 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Gracias</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event milestone">
+        <div class="time">10:50 Â· Don Danilo multi</div>
+        <div class="body">3 piso SM 50 intermedio frente a sala de maquetas / Cambio de enchufe
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag hito">Hito</span>
+      </div>
+
+      <div class="event">
+        <div class="time">11:01 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Cuando termine con las tapas de enchufes e interruptores, favor de ver si uno de los chapones que guardamos abajo sirven para esta cajonera de piso 3</div>
+        <span class="tag tarea">Tarea</span>
+      </div>
+
+      <div class="event">
+        <div class="time">11:31 Â· Don Danilo multi</div>
+        <div class="body">Ok</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">11:32 Â· Don Danilo multi</div>
+        <div class="body">Pero se llaman chapines</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">11:33 Â· Maria Cata Godoy ICETEL</div>
+        <div class="body">Se le corriÃ³ el dedo</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event">
+        <div class="time">11:34 Â· Don Danilo multi</div>
+        <div class="body">Ok</div>
+        <span class="tag mensaje">Mensaje</span>
+      </div>
+
+      <div class="event milestone">
+        <div class="time">11:46 Â· Don Danilo multi</div>
+        <div class="body">Patio Tucapel 1 subterrÃ¡neo sala de generadores / Se instalan 3 tapas ciegas
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag hito">Hito</span>
+      </div>
+
+      <div class="event milestone">
+        <div class="time">12:06 Â· Don Danilo multi</div>
+        <div class="body">1 subterrÃ¡neo SM 50 principal sala de energÃ­a â se instala tapa a interruptores de luz
+          <p style="color:var(--text-muted);font-size:0.8rem;margin-top:6px">ð· Imagen adjunta</p>
+        </div>
+        <span class="tag hito">Hito</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="images-section">
+    <h2>ImÃ¡genes (12)</h2>
+    <div class="images-grid">
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">08:53 Â· Don Danilo â Bodega 13 subterrÃ¡neo SM48 (inicio)</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:02 Â· Don Danilo â Escombros bodega 13</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:07 Â· Don Danilo â Bodega 13 subterrÃ¡neo SM48</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:31 Â· Maria Cata â BaÃ±o -1 mujeres SM50</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:34 Â· Maria Cata â Sala energÃ­a P-1 SM50</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:43 Â· Maria Cata â Piso 3</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">09:49 Â· Maria Cata â Tapa Tucapel piso -1</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">10:39 Â· Don Danilo â Tapa enchufe doble piso 4 SM50</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">10:50 Â· Don Danilo â Cambio enchufe piso 3 SM50</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">11:46 Â· Don Danilo â Tapas ciegas sala generadores</div></div>
+      <div class="img-card"><div class="img-placeholder">ð·</div><div class="img-caption">12:06 Â· Don Danilo â Tapa interruptores sala energÃ­a SM50</div></div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a href="report_2026-06-05.html">â Informe anterior</a>
+    <a href="../index.html">Ver todos los informes</a>
+    <a href="#">Siguiente informe â</a>
+  </div>
+
+</main>
+<footer>DCSM MultipropÃ³sito Â· Informe 2026-06-08 Â· Generado automÃ¡ticamente</footer>
+
+<script>
+function downloadPDF() {
+  const btn = document.querySelector('.dl-btn');
+  btn.style.display = 'none';
+  window.print();
+  setTimeout(() => { btn.style.display = ''; }, 1000);
+}
+</script>
+</body>
+</html>

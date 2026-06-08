@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DCSM â Informes MultipropÃ³sito</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --accent: #4f8ef7;
+      --accent2: #7c3aed;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --border: #2d3148;
+      --success: #10b981;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header .logo {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    header h1 { font-size: 1.3rem; font-weight: 600; }
+    header p { font-size: 0.82rem; color: var(--text-muted); }
+    .month-badge {
+      margin-left: auto;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .chart-card h2 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+    .chart-card p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; }
+    .chart-wrap { position: relative; height: 240px; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+    }
+    .stat-card .val { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-card .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .section-title {
+      font-size: 1rem; font-weight: 600;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .reports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .report-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+      display: block;
+    }
+    .report-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .report-card .date { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .report-card .title { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+    .report-card .meta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pill { font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+    .pill.green { color: var(--success); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
+    .pill.blue  { color: var(--accent);  border-color: rgba(79,142,247,0.3);  background: rgba(79,142,247,0.08); }
+
+    footer { text-align: center; padding: 32px; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">ð</div>
+  <div>
+    <h1>DCSM â MultipropÃ³sito</h1>
+    <p>Informes diarios del grupo WhatsApp</p>
+  </div>
+  <span class="month-badge" id="monthBadge"></span>
+</header>
+
+<main>
+  <div class="chart-card">
+    <h2>Hitos por dÃ­a</h2>
+    <p>Actividad registrada en el mes</p>
+    <div class="chart-wrap"><canvas id="milestonesChart"></canvas></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="val" id="statTotal">â</div><div class="lbl">Hitos totales</div></div>
+    <div class="stat-card"><div class="val" id="statDays">â</div><div class="lbl">DÃ­as con informe</div></div>
+    <div class="stat-card"><div class="val" id="statAvg">â</div><div class="lbl">Promedio hitos/dÃ­a</div></div>
+  </div>
+
+  <p class="section-title">Informes del mes</p>
+  <div class="reports-grid" id="reportsGrid"></div>
+</main>
+<footer>Generado automÃ¡ticamente por Claude Â· Grupo MultipropÃ³sito DCSM</footer>
+
+<script>
+// REPORTS_DATA â reemplazado automÃ¡ticamente por generate_report.py
+const REPORTS_DATA = [
+  {
+    "date": "2026-06-05",
+    "title": "Informe 5 de junio de 2026",
+    "milestones": 9,
+    "messages": 15,
+    "summary": "DesratizaciÃ³n finalizada. InstalaciÃ³n de nueva seÃ±alÃ©tica extintores y salidas escape. DocumentaciÃ³n DATA TIC (puntos 1,2,3,4,6), OF NÂ°1 HALL y PASILLO HACIA CINTOTECA.",
+    "file": "report_2026-06-05.html"
+  },
+  {
+    "date": "2026-06-08",
+    "title": "Informe 8 de junio de 2026",
+    "milestones": 5,
+    "messages": 24,
+    "summary": "Retiro escombros bodega 13 SM48. ReparaciÃ³n e instalaciÃ³n tapas enchufes pisos 3 y 4 SM50 intermedio. InstalaciÃ³n tapas ciegas sala generadores Tucapel subterrÃ¡neo.",
+    "file": "report_2026-06-08.html"
+  }
+];
+
+(function() {
+  const now = new Date();
+  document.getElementById('monthBadge').textContent =
+    now.toLocaleDateString('es-CL', { month: 'long', year: 'numeric' }).toUpperCase();
+
+  if (!REPORTS_DATA.length) {
+    document.getElementById('reportsGrid').innerHTML =
+      '<p style="color:var(--text-muted);grid-column:1/-1">AÃºn no hay informes para este mes.</p>';
+    return;
+  }
+
+  const totalMilestones = REPORTS_DATA.reduce((s, r) => s + r.milestones, 0);
+  const days = REPORTS_DATA.length;
+  document.getElementById('statTotal').textContent = totalMilestones;
+  document.getElementById('statDays').textContent  = days;
+  document.getElementById('statAvg').textContent   = days ? (totalMilestones / days).toFixed(1) : 0;
+
+  const ctx = document.getElementById('milestonesChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: REPORTS_DATA.map(r => { const [,m,d] = r.date.split('-'); return d+'/'+m; }),
+      datasets: [{ label: 'Hitos', data: REPORTS_DATA.map(r => r.milestones),
+        backgroundColor: 'rgba(79,142,247,0.5)', borderColor: 'rgba(79,142,247,1)',
+        borderWidth: 1.5, borderRadius: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', stepSize: 1 }, beginAtZero: true }
+      }
+    }
+  });
+
+  const grid = document.getElementById('reportsGrid');
+  REPORTS_DATA.slice().reverse().forEach(r => {
+    const dateStr = new Date(r.date + 'T12:00:00').toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' });
+    grid.innerHTML += `
+      <a class="report-card" href="reports/${r.file}">
+        <div class="date">${dateStr}</div>
+        <div class="title">${r.title}</div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;line-height:1.5">${r.summary}</p>
+        <div class="meta">
+          <span class="pill green">â ${r.milestones} hitos</span>
+          <span class="pill blue">ð¬ ${r.messages} mensajes</span>
+        </div>
+      </a>`;
+  });
+})();
+</script>
+</body>
+</html>

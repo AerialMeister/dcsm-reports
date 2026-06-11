@@ -1,207 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCSM â Informes MultipropÃ³sito</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-  <style>
-    :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #22263a;
-      --accent: #4f8ef7;
-      --accent2: #7c3aed;
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
-      --border: #2d3148;
-      --success: #10b981;
-      --radius: 12px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      min-height: 100vh;
-    }
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    header .logo {
-      width: 42px; height: 42px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    header h1 { font-size: 1.3rem; font-weight: 600; }
-    header p { font-size: 0.82rem; color: var(--text-muted); }
-    .month-badge {
-      margin-left: auto;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-    main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
-
-    .chart-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 32px;
-      margin-bottom: 40px;
-    }
-    .chart-card h2 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-    .chart-card p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 24px; }
-    .chart-wrap { position: relative; height: 240px; }
-
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-    }
-    .stat-card .val { font-size: 2rem; font-weight: 700; color: var(--accent); }
-    .stat-card .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
-
-    .section-title {
-      font-size: 1rem; font-weight: 600;
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .reports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-    .report-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s, transform 0.15s;
-      display: block;
-    }
-    .report-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .report-card .date { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
-    .report-card .title { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
-    .report-card .meta { display: flex; gap: 12px; flex-wrap: wrap; }
-    .pill { font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
-    .pill.green { color: var(--success); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
-    .pill.blue  { color: var(--accent);  border-color: rgba(79,142,247,0.3);  background: rgba(79,142,247,0.08); }
-
-    footer { text-align: center; padding: 32px; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora DCSM – Informes diarios</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #EEF3FB; color: #111; min-height: 100vh; }
+  header { background: #1E3A6B; color: white; padding: 32px 36px 28px; }
+  header h1 { font-size: 1.7rem; font-weight: 700; }
+  header p  { font-size: 0.9rem; opacity: 0.8; margin-top: 6px; }
+  .container { max-width: 720px; margin: 0 auto; padding: 36px 20px; }
+  .search-bar { display: flex; gap: 10px; margin-bottom: 28px; }
+  .search-bar input { flex: 1; padding: 10px 16px; border: 1.5px solid #ddd; border-radius: 24px; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+  .search-bar input:focus { border-color: #2563EB; }
+  .chart-card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); padding: 20px 24px 16px; margin-bottom: 28px; }
+  .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+  .chart-title { font-size: 0.85rem; font-weight: 700; color: #1E3A6B; }
+  .month-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .month-tab { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; border: 1.5px solid #ddd; background: white; color: #888; cursor: pointer; transition: all 0.15s; }
+  .month-tab.active { background: #1E3A6B; border-color: #1E3A6B; color: white; }
+  .chart-wrap { position: relative; height: 180px; }
+  .section-title { font-size: 0.78rem; font-weight: 700; color: #888; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px; }
+  .report-list { display: flex; flex-direction: column; gap: 10px; }
+  .report-card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); display: flex; align-items: center; gap: 16px; padding: 16px 20px; text-decoration: none; color: inherit; transition: box-shadow 0.18s, transform 0.18s; border-left: 4px solid #2563EB; }
+  .report-card:hover { box-shadow: 0 4px 16px rgba(37,99,235,0.15); transform: translateY(-1px); }
+  .card-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .card-body { flex: 1; }
+  .card-date { font-size: 1rem; font-weight: 600; color: #111; }
+  .card-meta { font-size: 0.8rem; color: #888; margin-top: 3px; }
+  .card-tag { background: #EAF1FC; color: #1E3A6B; font-size: 0.72rem; font-weight: 600; padding: 2px 9px; border-radius: 20px; }
+  .card-arrow { color: #ccc; font-size: 1.2rem; }
+  .empty { text-align: center; padding: 60px 20px; color: #aaa; }
+  .empty p { margin-top: 8px; font-size: 0.9rem; }
+  footer { text-align: center; font-size: 0.78rem; color: #bbb; padding: 40px 20px 28px; }
+</style>
 </head>
 <body>
 <header>
-  <div class="logo">ð</div>
-  <div>
-    <h1>DCSM â MultipropÃ³sito</h1>
-    <p>Informes diarios del grupo WhatsApp</p>
-  </div>
-  <span class="month-badge" id="monthBadge"></span>
+  <h1>📋 Bitácora DCSM</h1>
+  <p>Multiproposito DCSM · Registro diario de actividades</p>
 </header>
-
-<main>
+<div class="container">
+  <div class="search-bar">
+    <input type="text" id="buscador" placeholder="🔍  Buscar por fecha o descripción…" oninput="filtrar()">
+  </div>
   <div class="chart-card">
-    <h2>Hitos por dÃ­a</h2>
-    <p>Actividad registrada en el mes</p>
-    <div class="chart-wrap"><canvas id="milestonesChart"></canvas></div>
+    <div class="chart-header">
+      <span class="chart-title">📊 Hitos por día</span>
+      <div class="month-tabs" id="monthTabs"></div>
+    </div>
+    <div class="chart-wrap"><canvas id="hitosChart"></canvas></div>
   </div>
+  <p class="section-title">Informes disponibles</p>
+  <div class="report-list" id="lista">
 
-  <div class="stats">
-    <div class="stat-card"><div class="val" id="statTotal">â</div><div class="lbl">Hitos totales</div></div>
-    <div class="stat-card"><div class="val" id="statDays">â</div><div class="lbl">DÃ­as con informe</div></div>
-    <div class="stat-card"><div class="val" id="statAvg">â</div><div class="lbl">Promedio hitos/dÃ­a</div></div>
+    <a class="report-card" href="bitacora-DCSM-2026-06-10.html"
+       data-texto="miércoles 10 junio 2026 filtración agua baño sm50 flapper válvula llave angular flexible sello antifuga sala de energía aseo latón piso técnico sala móvil sm48"
+       data-fecha="2026-06-10" data-hitos="4">
+      <div class="card-icon">📄</div>
+      <div class="card-body">
+        <div class="card-date">Miércoles 10 de junio de 2026</div>
+        <div class="card-meta">Filtración baño SM50 · Cambio llave/flapper · Latón piso técnico SM48 · 19 fotos</div>
+      </div>
+      <span class="card-tag">4 hitos</span>
+      <span class="card-arrow">›</span>
+    </a>
+
+    <a class="report-card" href="bitacora-DCSM-2026-06-09.html"
+       data-texto="martes 09 junio 2026 sumideros pozo decantación canaletas azoteas aguas lluvias baldes sm42 bomba de agua manguera pasillo rojo sm48 latón sala móvil"
+       data-fecha="2026-06-09" data-hitos="4">
+      <div class="card-icon">📄</div>
+      <div class="card-body">
+        <div class="card-date">Martes 09 de junio de 2026</div>
+        <div class="card-meta">Sumideros y canaletas aguas lluvias · Baldes SM42 · Bomba de agua SM48 · 25 fotos</div>
+      </div>
+      <span class="card-tag">4 hitos</span>
+      <span class="card-arrow">›</span>
+    </a>
+
+    <a class="report-card" href="bitacora-DCSM-2026-06-08.html"
+       data-texto="lunes 08 junio 2026 tapas eléctricas enchufes condensadores filtración pintado letras estacionamientos"
+       data-fecha="2026-06-08" data-hitos="5">
+      <div class="card-icon">📄</div>
+      <div class="card-body">
+        <div class="card-date">Lunes 08 de junio de 2026</div>
+        <div class="card-meta">Tapas eléctricas SM50 · Filtración condensadores · Pintado estacionamientos · 38 fotos</div>
+      </div>
+      <span class="card-tag">5 hitos</span>
+      <span class="card-arrow">›</span>
+    </a>
+
+    <a class="report-card" href="bitacora-DCSM-2026-06-05.html"
+       data-texto="viernes 05 junio 2026 desratización señalética estacionamientos"
+       data-fecha="2026-06-05" data-hitos="4">
+      <div class="card-icon">📄</div>
+      <div class="card-body">
+        <div class="card-date">Viernes 05 de junio de 2026</div>
+        <div class="card-meta">Desratización · Señalética extintores · Pintado estacionamientos · 15 fotos</div>
+      </div>
+      <span class="card-tag">4 hitos</span>
+      <span class="card-arrow">›</span>
+    </a>
+
   </div>
-
-  <p class="section-title">Informes del mes</p>
-  <div class="reports-grid" id="reportsGrid"></div>
-</main>
-<footer>Generado automÃ¡ticamente por Claude Â· Grupo MultipropÃ³sito DCSM</footer>
-
+  <div class="empty" id="vacio" style="display:none">
+    <div style="font-size:2.5rem">🔍</div>
+    <p>No se encontraron informes para esa búsqueda.</p>
+  </div>
+</div>
+<footer>Bitácora DCSM · Generada automáticamente desde WhatsApp Web con Cowork</footer>
 <script>
-// REPORTS_DATA â reemplazado automÃ¡ticamente por generate_report.py
-const REPORTS_DATA = [
-  {
-    "date": "2026-06-05",
-    "title": "Informe 5 de junio de 2026",
-    "milestones": 9,
-    "messages": 15,
-    "summary": "DesratizaciÃ³n finalizada. InstalaciÃ³n de nueva seÃ±alÃ©tica extintores y salidas escape. DocumentaciÃ³n DATA TIC (puntos 1,2,3,4,6), OF NÂ°1 HALL y PASILLO HACIA CINTOTECA.",
-    "file": "report_2026-06-05.html"
-  },
-  {
-    "date": "2026-06-08",
-    "title": "Informe 8 de junio de 2026",
-    "milestones": 5,
-    "messages": 24,
-    "summary": "Retiro escombros bodega 13 SM48. ReparaciÃ³n e instalaciÃ³n tapas enchufes pisos 3 y 4 SM50 intermedio. InstalaciÃ³n tapas ciegas sala generadores Tucapel subterrÃ¡neo.",
-    "file": "report_2026-06-08.html"
-  }
-];
-
-(function() {
-  const now = new Date();
-  document.getElementById('monthBadge').textContent =
-    now.toLocaleDateString('es-CL', { month: 'long', year: 'numeric' }).toUpperCase();
-
-  if (!REPORTS_DATA.length) {
-    document.getElementById('reportsGrid').innerHTML =
-      '<p style="color:var(--text-muted);grid-column:1/-1">AÃºn no hay informes para este mes.</p>';
-    return;
-  }
-
-  const totalMilestones = REPORTS_DATA.reduce((s, r) => s + r.milestones, 0);
-  const days = REPORTS_DATA.length;
-  document.getElementById('statTotal').textContent = totalMilestones;
-  document.getElementById('statDays').textContent  = days;
-  document.getElementById('statAvg').textContent   = days ? (totalMilestones / days).toFixed(1) : 0;
-
-  const ctx = document.getElementById('milestonesChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: REPORTS_DATA.map(r => { const [,m,d] = r.date.split('-'); return d+'/'+m; }),
-      datasets: [{ label: 'Hitos', data: REPORTS_DATA.map(r => r.milestones),
-        backgroundColor: 'rgba(79,142,247,0.5)', borderColor: 'rgba(79,142,247,1)',
-        borderWidth: 1.5, borderRadius: 6 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', stepSize: 1 }, beginAtZero: true }
-      }
-    }
+function filtrar() {
+  const q = document.getElementById('buscador').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.report-card');
+  let visibles = 0;
+  cards.forEach(c => {
+    const texto = (c.dataset.texto || '') + ' ' + c.innerText.toLowerCase();
+    const mostrar = !q || texto.includes(q);
+    c.style.display = mostrar ? 'flex' : 'none';
+    if (mostrar) visibles++;
   });
-
-  const grid = document.getElementById('reportsGrid');
-  REPORTS_DATA.slice().reverse().forEach(r => {
-    const dateStr = new Date(r.date + 'T12:00:00').toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' });
-    grid.innerHTML += `
-      <a class="report-card" href="reports/${r.file}">
-        <div class="date">${dateStr}</div>
-        <div class="title">${r.title}</div>
-        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;line-height:1.5">${r.summary}</p>
-        <div class="meta">
-          <span class="pill green">â ${r.milestones} hitos</span>
-          <span class="pill blue">ð¬ ${r.messages} mensajes</span>
-        </div>
-      </a>`;
+  document.getElementById('vacio').style.display = visibles === 0 ? 'block' : 'none';
+}
+(function () {
+  const MESES_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const cards = Array.from(document.querySelectorAll('.report-card[data-fecha]'));
+  const datos = cards.map(c => ({ fecha: c.dataset.fecha, hitos: parseInt(c.dataset.hitos) || 0 }));
+  const porMes = {};
+  datos.forEach(d => { const mes = d.fecha.slice(0, 7); if (!porMes[mes]) porMes[mes] = []; porMes[mes].push(d); });
+  const meses = Object.keys(porMes).sort();
+  function labelMes(ym) { const [y, m] = ym.split('-'); return MESES_ES[parseInt(m) - 1] + ' ' + y; }
+  const tabsEl = document.getElementById('monthTabs');
+  meses.forEach((m, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'month-tab' + (i === meses.length - 1 ? ' active' : '');
+    btn.textContent = labelMes(m); btn.dataset.mes = m;
+    btn.onclick = () => { document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active')); btn.classList.add('active'); renderChart(m); };
+    tabsEl.appendChild(btn);
   });
+  let chart = null;
+  const canvas = document.getElementById('hitosChart');
+  function renderChart(mes) {
+    const items = (porMes[mes] || []).sort((a, b) => a.fecha.localeCompare(b.fecha));
+    const labels = items.map(d => d.fecha.slice(8,10) + '/' + d.fecha.slice(5,7));
+    const values = items.map(d => d.hitos);
+    if (chart) chart.destroy();
+    chart = new Chart(canvas.getContext('2d'), {
+      type: 'bar',
+      data: { labels, datasets: [{ label: 'Hitos', data: values, backgroundColor: 'rgba(30,58,107,0.85)', borderColor: '#1E3A6B', borderWidth: 1.5, borderRadius: 5, borderSkipped: false }] },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y + ' hito' + (ctx.parsed.y !== 1 ? 's' : '') } } },
+        scales: { x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#555' } }, y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 11 }, color: '#555' }, grid: { color: 'rgba(0,0,0,0.06)' } } } }
+    });
+  }
+  if (meses.length > 0) renderChart(meses[meses.length - 1]);
+  else document.querySelector('.chart-wrap').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#bbb;font-size:0.85rem">Sin datos aún</div>';
 })();
 </script>
 </body>

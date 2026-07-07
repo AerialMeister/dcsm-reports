@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BitÃ¡cora DCSM â Informes diarios</title>
+<title>Bitácora DCSM – Informes diarios</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,16 +39,16 @@
 </head>
 <body>
 <header>
-  <h1>ð BitÃ¡cora DCSM</h1>
-  <p>Multiproposito DCSM Â· Registro diario de actividades</p>
+  <h1>📋 Bitácora DCSM</h1>
+  <p>Multiproposito DCSM · Registro diario de actividades</p>
 </header>
 <div class="container">
   <div class="search-bar">
-    <input type="text" id="buscador" placeholder="ð  Buscar por fecha o descripciÃ³nâ¦" oninput="filtrar()">
+    <input type="text" id="buscador" placeholder="🔍  Buscar por fecha o descripción…" oninput="filtrar()">
   </div>
   <div class="chart-card">
     <div class="chart-header">
-      <span class="chart-title">ð Hitos por dÃ­a</span>
+      <span class="chart-title">📊 Hitos por día</span>
       <div class="month-tabs" id="monthTabs"></div>
     </div>
     <div class="chart-wrap"><canvas id="hitosChart"></canvas></div>
@@ -65,146 +65,16 @@
       <span class="card-tag">5 hitos</span>
       <span class="card-arrow">›</span>
     </a>
-
-      <a class="report-card" href="bitacora-DCSM-2026-07-03.html" data-texto="Control de plagas del Data Center San MartÃ­n: desinsectaciÃ³n de chillers, torres de enfriamiento, piso 5 SM50 y porterÃ­a SM48, y desratizaciÃ³n del sitio. Hallazgos: tubo de 120 quemado en tÃºnel de cables, seÃ±alÃ©tica sector Caterpillar y equipo de iluminaciÃ³n suelto en sala de basura SM48" data-fecha="2026-07-03" data-hitos="5"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Viernes 03 de julio de 2026</div><div class="card-meta">Control de plagas: desinsectaciÃ³n y desratizaciÃ³n Â· 41 fotos</div></div><span class="card-tag">5 hitos</span><span class="card-arrow">âº</span></a>
-      <a class="report-card" href="bitacora-DCSM-2026-07-02.html" data-texto="Corte de trozos de latÃ³n en Bodega Tucapel, cambio de 7 luminarias LED tipo PL en el 3Â° piso SM50 (Nextstream e Icetel) y detecciÃ³n de falla de buje en un extractor de aire" data-fecha="2026-07-02" data-hitos="3"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Jueves 02 de julio de 2026</div><div class="card-meta">Corte de latÃ³n, luminarias LED y extractor Â· 2 fotos</div></div><span class="card-tag">3 hitos</span><span class="card-arrow">âº</span></a>
-      <a class="report-card" href="bitacora-DCSM-2026-07-01.html" data-texto="Retiro de latones de silenciadores de equipos de clima en Patio Tucapel, gestiÃ³n de compra de disco para sierra circular de 7 1/4 con 60 dientes y discos de corte, y preparaciÃ³n de latones para tapar agujeros en la sala principal 9 del 1Â° piso SM50" data-fecha="2026-07-01" data-hitos="3"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">MiÃ©rcoles 01 de julio de 2026</div><div class="card-meta">Patio Tucapel, compra de herramientas de corte y preparaciÃ³n de latones para sellado Â· 5 fotos</div></div><span class="card-tag">3 hitos</span><span class="card-arrow">âº</span></a>
-      <a class="report-card" href="bitacora-DCSM-2026-06-30.html" data-texto="InstalaciÃ³n de pizarra y TVs en 3Â° piso SM50 (sala de tableros, jefatura ICETEL y NextStream), retiro y reciclaje de plÃ¡sticos y tubos fluorescentes en patio atlas, cambio de flapper en baÃ±os de damas, revisiÃ³n de filtraciÃ³n en baÃ±os de varones, limpieza de patio telemÃ¡tico y canaleta de aguas lluvias" data-fecha="2026-06-30" data-hitos="16"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Martes 30 de junio de 2026</div><div class="card-meta">Pizarra y TVs en 3Â° piso SM50, reciclaje en patio atlas, cambio de flapper y limpieza de patio telemÃ¡tico Â· 43 fotos</div></div><span class="card-tag">16 hitos</span><span class="card-arrow">âº</span></a>
-      <a class="report-card" href="bitacora-DCSM-2026-06-26.html" data-texto="Cambio de TV 3Â° piso SM50, instalaciÃ³n de portallaves, limpieza de patio telemÃ¡tico y canaleta de aguas lluvias" data-fecha="2026-06-26" data-hitos="9"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Viernes 26 de junio de 2026</div><div class="card-meta">Cambio de TV 3Â° piso SM50, portallaves y limpieza de patio telemÃ¡tico Â· 18 fotos</div></div><span class="card-tag">9 hitos</span><span class="card-arrow">âº</span></a>
-<a class="report-card" href="bitacora-DCSM-2026-06-25.html" data-texto="Patio telemÃ¡tico, solerilla divisoria de estacionamiento, instalaciÃ³n y pintura, liberaciÃ³n de estacionamiento ICETEL, filtraciÃ³n de agua SM50 piso 6, azotea SM50 sector de bombas, cambio de llave de jardÃ­n con gotera, llave de paso, supervisiÃ³n ICETEL Maria Cata Godoy, Don Danilo" data-fecha="2026-06-25" data-hitos="4"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Jueves 25 de junio de 2026</div><div class="card-meta">Patio telemÃ¡tico: solerilla divisoria y pintura; atenciÃ³n de filtraciÃ³n y cambio de llaves en azotea SM50 Â· 12 fotos</div></div><span class="card-tag">4 hitos</span><span class="card-arrow">âº</span></a>
-<a class="report-card" href="bitacora-DCSM-2026-06-24.html" data-texto="DemarcaciÃ³n patio telemÃ¡tico, excavaciÃ³n de zanja, instalaciÃ³n de solerillas divisorias, pintura de solerillas, segregaciÃ³n de estacionamientos, supervisiÃ³n ICETEL, inicio tercera zanja" data-fecha="2026-06-24" data-hitos="8"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">MiÃ©rcoles 24 de junio de 2026</div><div class="card-meta">DemarcaciÃ³n patio telemÃ¡tico: zanjas, solerillas divisorias y pintura Â· 10 fotos</div></div><span class="card-tag">8 hitos</span><span class="card-arrow">âº</span></a>
-<a class="report-card" href="bitacora-DCSM-2026-06-23.html" data-texto="Cambio chapÃ­n cajonera SM50, cÃ¡mara seguridad, traslado materiales, solerillas, pintura demarcaciÃ³n, segregaciÃ³n estacionamientos, limpieza sector" data-fecha="2026-06-23" data-hitos="11"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Martes 23 de junio de 2026</div><div class="card-meta">11 hitos Â· 26 fotos</div></div><span class="card-tag">11 hitos</span><span class="card-arrow">âº</span></a>
-
-<a class="report-card" href="bitacora-DCSM-2026-06-22.html" data-texto="BitÃ¡cora DCSM Lunes 22 de junio tapado orificios piso tÃ©cnico solerilla patio telemÃ¡tico" data-fecha="2026-06-22" data-hitos="9"><div class="card-icon">ð</div><div class="card-body"><div class="card-date">Lunes 22 de junio de 2026</div><div class="card-meta">BitÃ¡cora de mantenimiento DCSM Â· 18 fotos</div></div><span class="card-tag">9 hitos</span><span class="card-arrow">âº</span></a>
-      <a class="report-card" href="bitacora-DCSM-2026-06-19.html" data-texto="viernes 19 junio 2026 ronda preventiva urinario tapado destapado wc movilidad reducida estanque baÃ±o varones sm50 3 piso cartel prohibido estacionarse sm48 entrada principal brazo hidraulico puerta emergencia sm50 1 piso intermedio palmeta piso tecnico laton tornillo tic 4 sm50 2 piso dataempresa seguridad detener un trabajo icetel don danilo maria cata godoy" data-fecha="2026-06-19" data-hitos="4">
-        <div class="card-icon">ð</div>
-        <div class="card-body">
-          <div class="card-date">Viernes 19 de junio de 2026</div>
-          <div class="card-meta">Destape de urinario SM50 Â· Brazo hidrÃ¡ulico puerta de emergencia Â· Cartel SM48 Â· 11 fotos</div>
-        </div>
-        <span class="card-tag">4 hitos</span>
-        <span class="card-arrow">âº</span>
-      </a>
-      
-      <a class="report-card" href="bitacora-DCSM-2026-06-18.html" data-texto="jueves 18 junio 2026 aseo sala de energÃ­a 1 subterrÃ¡neo patio tucapel letreros carteles estacionamientos patio telemÃ¡tico casilleros camarÃ­n sm50 intermedio porta candado ronda preventiva sm42 sm44 sm48 sm50 charla seguridad prevenciÃ³n caÃ­das don danilo gabriel poveda dante oliva danilo ormazabal maria cata godoy icetel" data-fecha="2026-06-18" data-hitos="6">
-        <div class="card-icon">ð</div>
-        <div class="card-body">
-          <div class="card-date">Jueves 18 de junio de 2026</div>
-          <div class="card-meta">Aseo sala de energÃ­a Tucapel Â· Letreros patio telemÃ¡tico Â· Casilleros SM50 Â· 12 fotos</div>
-        </div>
-        <span class="card-tag">6 hitos</span>
-        <span class="card-arrow">âº</span>
-      </a>
-      
-      <a class="report-card" href="bitacora-DCSM-2026-06-17.html" data-texto="miÃ©rcoles 17 junio 2026 seÃ±alÃ©tica letreros carteles pintura patio telemÃ¡tico bodega tucapel murallas norte sur instalaciÃ³n limpieza azotea sm44 hojas canaletas tarugos fisher 8mm salas energÃ­a subterrÃ¡neo sm50 aseo registro" data-fecha="2026-06-17" data-hitos="8">
-        <div class="card-icon">ð</div>
-        <div class="card-body">
-          <div class="card-date">MiÃ©rcoles 17 de junio de 2026</div>
-          <div class="card-meta">SeÃ±alÃ©tica patio telemÃ¡tico Â· Limpieza azotea SM44 Â· Carteles murallas Â· 15 fotos</div>
-        </div>
-        <span class="card-tag">8 hitos</span>
-        <span class="card-arrow">âº</span>
-      </a>
-      <a class="report-card" href="bitacora-DCSM-2026-06-16.html" data-texto="martes 16 junio 2026 sellado silicona lavaplatos sm50 piso 3 kitchen filtraciÃ³n agua monomando pintado letreros carteles patio telemÃ¡tico bodega tucapel tapa enchufe sm48 sala sdh cierre llaves paso agua potable baÃ±os 6 piso candado cambio tubos led hall ascensor escalera servicio alimentadores elÃ©ctricos bodega 6 subterrÃ¡neo cobre" data-fecha="2026-06-16" data-hitos="7">
-        <div class="card-icon">ð</div>
-        <div class="card-body">
-          <div class="card-date">Martes 16 de junio de 2026</div>
-          <div class="card-meta">Sellado lavaplatos SM50 P3 Â· Letreros patio Â· Llaves agua P6 Â· Tubos LED Â· 20 fotos</div>
-        </div>
-        <span class="card-tag">7 hitos</span>
-        <span class="card-arrow">âº</span>
-      </a>
-      <a class="report-card" href="bitacora-DCSM-2026-06-15.html"
-       data-texto="lunes 15 junio 2026 filtro agua potable sm50 piso 3 contactor kitchen letreros patio telemÃ¡tico bodega tucapel ascensores otis don renÃ© sm50 sala mÃ¡quinas poza agua azotea bomba gotera llave jardÃ­n sm42 falta energÃ­a dos fases cambio tubos led hall ascensores subterrÃ¡neo bajada escalera"
-       data-fecha="2026-06-15" data-hitos="6">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">Lunes 15 de junio de 2026</div>
-        <div class="card-meta">Filtro agua SM50 P3 Â· Ascensores OTIS Â· Poza agua azotea Â· Tubos LED Â· 16 fotos</div>
-      </div>
-      <span class="card-tag">6 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
-    <a class="report-card" href="bitacora-DCSM-2026-06-12.html"
-       data-texto="viernes 12 junio 2026 tapas registro dataempresa sm50 corte latÃ³n bodega tucapel tapado agujeros piso tÃ©cnico sala mÃ³vil sm48 pintado carteles patio telemÃ¡tico"
-       data-fecha="2026-06-12" data-hitos="4">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">Viernes 12 de junio de 2026</div>
-        <div class="card-meta">Tapas dataempresa SM50 Â· LatÃ³n piso tÃ©cnico SM48 Â· Carteles patio telemÃ¡tico Â· 14 fotos</div>
-      </div>
-      <span class="card-tag">4 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
-    <a class="report-card" href="bitacora-DCSM-2026-06-11.html"
-       data-texto="jueves 11 junio 2026 retiro bomba aguas lluvias reparaciÃ³n enchufe elÃ©ctrico tapas registro equipos clima aseo sala de energÃ­a"
-       data-fecha="2026-06-11" data-hitos="5">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">Jueves 11 de junio de 2026</div>
-        <div class="card-meta">Retiro de bomba aguas lluvias Â· ReparaciÃ³n enchufe Â· Tapas de registro Â· Aseo sala de energÃ­a Â· 28 fotos</div>
-      </div>
-      <span class="card-tag">5 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
-    <a class="report-card" href="bitacora-DCSM-2026-06-10.html"
-       data-texto="miÃ©rcoles 10 junio 2026 filtraciÃ³n agua baÃ±o sm50 flapper vÃ¡lvula llave angular flexible sello antifuga sala de energÃ­a aseo latÃ³n piso tÃ©cnico sala mÃ³vil sm48"
-       data-fecha="2026-06-10" data-hitos="4">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">MiÃ©rcoles 10 de junio de 2026</div>
-        <div class="card-meta">FiltraciÃ³n baÃ±o SM50 Â· Cambio llave/flapper Â· LatÃ³n piso tÃ©cnico SM48 Â· 19 fotos</div>
-      </div>
-      <span class="card-tag">4 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
-    <a class="report-card" href="bitacora-DCSM-2026-06-09.html"
-       data-texto="martes 09 junio 2026 sumideros pozo decantaciÃ³n canaletas azoteas aguas lluvias baldes sm42 bomba de agua manguera pasillo rojo sm48 latÃ³n sala mÃ³vil"
-       data-fecha="2026-06-09" data-hitos="4">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">Martes 09 de junio de 2026</div>
-        <div class="card-meta">Sumideros y canaletas aguas lluvias Â· Baldes SM42 Â· Bomba de agua SM48 Â· 25 fotos</div>
-      </div>
-      <span class="card-tag">4 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
-    <a class="report-card" href="bitacora-DCSM-2026-06-08.html"
-       data-texto="lunes 08 junio 2026 tapas elÃ©ctricas enchufes condensadores filtraciÃ³n pintado letras estacionamientos"
-       data-fecha="2026-06-08" data-hitos="5">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">Lunes 08 de junio de 2026</div>
-        <div class="card-meta">Tapas elÃ©ctricas SM50 Â· FiltraciÃ³n condensadores Â· Pintado estacionamientos Â· 38 fotos</div>
-      </div>
-      <span class="card-tag">5 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
-    <a class="report-card" href="bitacora-DCSM-2026-06-05.html"
-       data-texto="viernes 05 junio 2026 desratizaciÃ³n seÃ±alÃ©tica estacionamientos"
-       data-fecha="2026-06-05" data-hitos="4">
-      <div class="card-icon">ð</div>
-      <div class="card-body">
-        <div class="card-date">Viernes 05 de junio de 2026</div>
-        <div class="card-meta">DesratizaciÃ³n Â· SeÃ±alÃ©tica extintores Â· Pintado estacionamientos Â· 15 fotos</div>
-      </div>
-      <span class="card-tag">4 hitos</span>
-      <span class="card-arrow">âº</span>
-    </a>
-
+    <a class="report-card" href="bitacora-DCSM-2026-07-03.html" data-texto="Control de plagas del Data Center San Martín: desinsectación de chillers, torres de enfriamiento, piso 5 SM50 y portería SM48, y desratización del sitio. Hallazgos: tubo de 120 quemado en túnel de cables, señalética sector Caterpillar y equipo de iluminación suelto en sala de basura SM48" data-fecha="2026-07-03" data-hitos="5"><div class="card-icon">📄</div><div class="card-body"><div class="card-date">Viernes 03 de julio de 2026</div><div class="card-meta">Control de plagas: desinsectación y desratización · 41 fotos</div></div><span class="card-tag">5 hitos</span><span class="card-arrow">›</span></a>
+    <a class="report-card" href="bitacora-DCSM-2026-07-02.html" data-texto="Corte de trozos de latón en Bodega Tucapel, cambio de 7 luminarias LED tipo PL en el 3° piso SM50 (Nextstream e Icetel) y detección de falla de buje en un extractor de aire" data-fecha="2026-07-02" data-hitos="3"><div class="card-icon">📄</div><div class="card-body"><div class="card-date">Jueves 02 de julio de 2026</div><div class="card-meta">Corte de latón, luminarias LED y extractor · 2 fotos</div></div><span class="card-tag">3 hitos</span><span class="card-arrow">›</span></a>
+    <a class="report-card" href="bitacora-DCSM-2026-07-01.html" data-texto="Retiro de latones de silenciadores de equipos de clima en Patio Tucapel, gestión de compra de disco para sierra circular de 7 1/4 con 60 dientes y discos de corte, y preparación de latones para tapar agujeros en la sala principal 9 del 1° piso SM50" data-fecha="2026-07-01" data-hitos="3"><div class="card-icon">📄</div><div class="card-body"><div class="card-date">Miércoles 01 de julio de 2026</div><div class="card-meta">Patio Tucapel, compra de herramientas de corte y preparación de latones para sellado · 5 fotos</div></div><span class="card-tag">3 hitos</span><span class="card-arrow">›</span></a>
   </div>
   <div class="empty" id="vacio" style="display:none">
-    <div style="font-size:2.5rem">ð</div>
-    <p>No se encontraron informes para esa bÃºsqueda.</p>
+    <div style="font-size:2.5rem">🔍</div>
+    <p>No se encontraron informes para esa búsqueda.</p>
   </div>
 </div>
-<footer>BitÃ¡cora DCSM Â· Generada automÃ¡ticamente desde WhatsApp Web con Cowork</footer>
+<footer>Bitácora DCSM · Generada automáticamente desde WhatsApp Web con Cowork</footer>
 <script>
 function filtrar() {
   const q = document.getElementById('buscador').value.toLowerCase().trim();
@@ -250,7 +120,7 @@ function filtrar() {
     });
   }
   if (meses.length > 0) renderChart(meses[meses.length - 1]);
-  else document.querySelector('.chart-wrap').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#bbb;font-size:0.85rem">Sin datos aÃºn</div>';
+  else document.querySelector('.chart-wrap').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#bbb;font-size:0.85rem">Sin datos aún</div>';
 })();
 </script>
 
